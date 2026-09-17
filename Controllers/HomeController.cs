@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LongManLoc.Controllers
 {
-    [Authorize] // Báº£o vá»‡ toÃ n bá»™ controller: chÆ°a Ä‘Äƒng nháº­p sáº½ redirect vá» /Account/Login
+    [Authorize] // Bảo vệ toàn bộ controller: chưa đăng nhập sẽ redirect về /Account/Login
     public class HomeController : Controller
     {
         // GET: /Home/Index

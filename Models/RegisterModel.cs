@@ -4,29 +4,29 @@ namespace LongManLoc.Models
 {
     public class RegisterModel
     {
-        [Required(ErrorMessage = "Vui lÃ²ng nháº­p há» vÃ  tÃªn")]
-        [Display(Name = "Há» vÃ  TÃªn")]
+        [Required(ErrorMessage = "Vui lòng nhập họ và tên")]
+        [Display(Name = "Họ và Tên")]
         public string FullName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lÃ²ng nháº­p sá»‘ Ä‘iá»‡n thoáº¡i")]
-        [Display(Name = "Sá»‘ Ä‘iá»‡n thoáº¡i")]
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        [Display(Name = "Số điện thoại")]
         public string Phone { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lÃ²ng nháº­p email")]
-        [EmailAddress(ErrorMessage = "Email khÃ´ng há»£p lá»‡")]
+        [Required(ErrorMessage = "Vui lòng nhập email")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         [Display(Name = "Email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lÃ²ng nháº­p máº­t kháº©u")]
-        [MinLength(6, ErrorMessage = "Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±")]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [MinLength(6, ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự")]
         [DataType(DataType.Password)]
-        [Display(Name = "Máº­t kháº©u")]
+        [Display(Name = "Mật khẩu")]
         public string Password { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Vui lÃ²ng xÃ¡c nháº­n máº­t kháº©u")]
+        [Required(ErrorMessage = "Vui lòng xác nhận mật khẩu")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Máº­t kháº©u xÃ¡c nháº­n khÃ´ng khá»›p")]
-        [Display(Name = "XÃ¡c nháº­n máº­t kháº©u")]
+        [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp")]
+        [Display(Name = "Xác nhận mật khẩu")]
         public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

@@ -13,7 +13,7 @@ namespace LongManLoc.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            // Náº¿u Ä‘Ã£ Ä‘Äƒng nháº­p, chuyá»ƒn tháº³ng vÃ o trang chÃ­nh
+            // Nếu đã đăng nhập, chuyển thẳng vào trang chính
             if (User.Identity?.IsAuthenticated == true)
                 return RedirectToAction("Index", "Home");
 
@@ -28,7 +28,7 @@ namespace LongManLoc.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // TODO: Thay báº±ng kiá»ƒm tra tÃ i khoáº£n trong CSDL thá»±c táº¿
+            // TODO: Thay bằng kiểm tra tài khoản trong CSDL thực tế
             if (model.Username == "admin" && model.Password == "123456")
             {
                 var claims = new List<Claim>
@@ -54,7 +54,7 @@ namespace LongManLoc.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError(string.Empty, "TÃªn Ä‘Äƒng nháº­p hoáº·c máº­t kháº©u khÃ´ng Ä‘Ãºng.");
+            ModelState.AddModelError(string.Empty, "Tên đăng nhập hoặc mật khẩu không đúng.");
             return View(model);
         }
 
@@ -86,9 +86,9 @@ namespace LongManLoc.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // TODO: ThÃªm logic lÆ°u tÃ i khoáº£n vÃ o CSDL
+            // TODO: Thêm logic lưu tài khoản vào CSDL
             
-            TempData["SuccessMessage"] = "ÄÄƒng kÃ½ thÃ nh cÃ´ng! Vui lÃ²ng Ä‘Äƒng nháº­p.";
+            TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
             return RedirectToAction("Login", "Account");
         }
 
