@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="welcome-section">
+    <div class="welcome-card">
+        <div class="welcome-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+        </div>
+        <h2>Đăng nhập thành công!</h2>
+        <p class="welcome-name">Xin chào, <strong>@User.Identity?.Name</strong> 👋</p>
+        <p class="welcome-desc">Bạn đã đăng nhập vào hệ thống với vai trò <span class="role-badge">Admin</span>.</p>
+        <p class="welcome-desc">Đây là trang chủ được bảo vệ bởi <code>[Authorize]</code>. Chỉ người dùng đã đăng nhập mới thấy được trang này.</p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">Tài khoản</span>
+                <span class="info-value">@User.Identity?.Name</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Trạng thái</span>
+                <span class="info-value status-online">● Đang hoạt động</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Phương thức xác thực</span>
+                <span class="info-value">Cookie Authentication</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Thời hạn phiên</span>
+                <span class="info-value">30 phút</span>
+            </div>
+        </div>
+    </div>
+</div>

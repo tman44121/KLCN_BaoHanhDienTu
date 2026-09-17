@@ -1,0 +1,234 @@
+/* =========================================================
+   site.css – LoginDemo Global Stylesheet
+   Font: Inter (Google Fonts)
+   Primary: #006b5b | Accent: #00897b
+   ========================================================= */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #1f2937;
+    background-color: #f3f4f6;
+}
+
+/* ---- Navbar ---- */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #006b5b;
+    letter-spacing: -0.3px;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, #006b5b, #00897b);
+    border-radius: 9px;
+}
+
+.brand-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    background: transparent;
+    border: 1.5px solid #006b5b;
+    border-radius: 8px;
+    color: #006b5b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-logout:hover {
+    background: #006b5b;
+    color: #ffffff;
+}
+
+.btn-nav-login {
+    display: inline-block;
+    padding: 7px 18px;
+    background: linear-gradient(135deg, #006b5b, #00897b);
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.btn-nav-login:hover { opacity: 0.88; }
+
+/* ---- Main Content ---- */
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* ---- Welcome Section (Home/Index) ---- */
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.welcome-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 580px;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    animation: fadeIn 0.4s ease both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #006b5b, #00897b);
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.welcome-icon svg {
+    width: 34px;
+    height: 34px;
+    fill: #ffffff;
+}
+
+.welcome-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.welcome-name {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.welcome-desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+.welcome-desc code {
+    background: #f0fdf4;
+    color: #065f46;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 28px;
+    text-align: left;
+}
+
+.info-item {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+
+.info-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.status-online { color: #16a34a; }
+
+.role-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}

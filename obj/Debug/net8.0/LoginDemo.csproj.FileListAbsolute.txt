@@ -1,0 +1,68 @@
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\appsettings.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.staticwebassets.runtime.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.staticwebassets.endpoints.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.exe
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.deps.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.runtimeconfig.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.dll
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\LoginDemo.pdb
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.AssemblyReference.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.AssemblyInfoInputs.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.AssemblyInfo.cs
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.CoreCompileInputs.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.RazorAssemblyInfo.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.RazorAssemblyInfo.cs
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\scopedcss\bundle\LoginDemo.styles.css
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.LoginDemo.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.LoginDemo.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.build.LoginDemo.props
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.LoginDemo.props
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.LoginDemo.props
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.Up2Date
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.dll
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\refint\LoginDemo.dll
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.pdb
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\LoginDemo.genruntimeconfig.cache
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\ref\LoginDemo.dll
+C:\Users\THANH MAN\Downloads\stitch_longmanloc_saas_landing_page\stitch_longmanloc_saas_landing_page\LoginDemo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\KLCN\LoginDemo\bin\Debug\net8.0\appsettings.json
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.staticwebassets.endpoints.json
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.staticwebassets.runtime.json
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.exe
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.deps.json
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.runtimeconfig.json
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.dll
+D:\KLCN\LoginDemo\bin\Debug\net8.0\LoginDemo.pdb
+D:\KLCN\LoginDemo\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.AssemblyReference.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.AssemblyInfoInputs.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.AssemblyInfo.cs
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.CoreCompileInputs.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.MvcApplicationPartsAssemblyInfo.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.RazorAssemblyInfo.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.RazorAssemblyInfo.cs
+D:\KLCN\LoginDemo\obj\Debug\net8.0\scopedcss\bundle\LoginDemo.styles.css
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets.build.json
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets.development.json
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.LoginDemo.Microsoft.AspNetCore.StaticWebAssets.props
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.LoginDemo.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.build.LoginDemo.props
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.LoginDemo.props
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.LoginDemo.props
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets.pack.json
+D:\KLCN\LoginDemo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.csproj.Up2Date
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.dll
+D:\KLCN\LoginDemo\obj\Debug\net8.0\refint\LoginDemo.dll
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.pdb
+D:\KLCN\LoginDemo\obj\Debug\net8.0\LoginDemo.genruntimeconfig.cache
+D:\KLCN\LoginDemo\obj\Debug\net8.0\ref\LoginDemo.dll
