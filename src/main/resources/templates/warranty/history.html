@@ -3,159 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lịch Sử Bảo Hành – LongManLoc</title>
+    <title>Quản Lý Lịch Sử Bảo Hành – LongManLoc E-WARRANTY BASE</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" th:href="@{/css/home.css}" />
-    <style>
-        body { background: #f8fafc; font-family: 'Inter', sans-serif; }
-
-        .page-hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0d9488 100%);
-            color: #fff; padding: 48px 24px 80px; text-align: center;
-        }
-        .page-hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
-        .page-hero p { color: #94a3b8; font-size: 15px; }
-
-        .main-wrapper {
-            max-width: 1100px; margin: -48px auto 60px;
-            padding: 0 20px;
-        }
-
-        /* Tabs */
-        .tab-bar {
-            display: flex; gap: 4px;
-            background: #fff; padding: 6px; border-radius: 16px;
-            border: 1px solid #e2e8f0; margin-bottom: 24px;
-            box-shadow: 0 4px 16px rgba(15,23,42,.05);
-        }
-        .tab-btn {
-            flex: 1; padding: 10px 16px; border: none; border-radius: 12px;
-            font-size: 14px; font-weight: 600; cursor: pointer;
-            background: transparent; color: #64748b; transition: all .2s;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .tab-btn.active { background: linear-gradient(135deg,#0d9488,#0369a1); color: #fff; box-shadow: 0 4px 12px rgba(13,148,136,.25); }
-        .tab-badge {
-            background: rgba(255,255,255,0.2); border-radius: 50px;
-            padding: 2px 8px; font-size: 11px; font-weight: 700;
-        }
-        .tab-btn:not(.active) .tab-badge { background: #e2e8f0; color: #64748b; }
-
-        /* Cards container */
-        .cards-grid { display: flex; flex-direction: column; gap: 16px; }
-
-        /* History card */
-        .history-card {
-            background: #fff; border-radius: 18px; border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px rgba(15,23,42,.05);
-            overflow: hidden; transition: transform .2s, box-shadow .2s;
-        }
-        .history-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(15,23,42,.1); }
-
-        .hcard-top {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            padding: 20px 24px 0; flex-wrap: wrap; gap: 12px;
-        }
-        .hcard-left { flex: 1; min-width: 200px; }
-        .device-name { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
-        .device-serial { font-size: 12px; color: #94a3b8; font-family: monospace; }
-        .ticket-code {
-            font-size: 12px; font-weight: 700; color: #0d9488;
-            background: #f0fdfa; border: 1px solid #99f6e4;
-            padding: 4px 12px; border-radius: 50px; align-self: flex-start;
-        }
-
-        .hcard-meta {
-            display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
-            border-top: 1px solid #f1f5f9; margin-top: 16px;
-        }
-        .meta-item {
-            padding: 14px 20px; border-right: 1px solid #f1f5f9;
-        }
-        .meta-item:last-child { border-right: none; }
-        .meta-label { font-size: 10px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 4px; }
-        .meta-value { font-size: 13px; font-weight: 600; color: #0f172a; }
-
-        .hcard-bottom {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 24px; background: #f8fafc;
-            border-top: 1px solid #f1f5f9; flex-wrap: wrap; gap: 10px;
-        }
-        .desc-text { font-size: 13px; color: #475569; flex: 1; min-width: 200px; }
-        .desc-text strong { color: #0f172a; }
-
-        /* Badges */
-        .badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 5px 14px; border-radius: 50px; font-size: 12px; font-weight: 700;
-        }
-        .badge::before { content: '●'; font-size: 8px; }
-        .badge-received { background:#eff6ff; color:#1d4ed8; }
-        .badge-inspecting { background:#fef3c7; color:#b45309; }
-        .badge-processing { background:#fff7ed; color:#c2410c; }
-        .badge-waiting { background:#fdf2f8; color:#86198f; }
-        .badge-completed { background:#f0fdf4; color:#15803d; }
-        .badge-delivered { background:#f0fdf4; color:#166534; }
-        .badge-cancelled { background:#fef2f2; color:#dc2626; }
-
-        /* Online request card */
-        .online-card {
-            background: #fff; border-radius: 14px; border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 16px rgba(15,23,42,.04);
-            padding: 18px 22px;
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 16px; flex-wrap: wrap; transition: transform .2s;
-        }
-        .online-card:hover { transform: translateY(-1px); }
-        .online-left { flex: 1; min-width: 200px; }
-        .online-model { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
-        .online-serial { font-size: 12px; color: #94a3b8; font-family: monospace; }
-        .online-info { font-size: 12px; color: #64748b; margin-top: 6px; display: flex; gap: 16px; flex-wrap: wrap; }
-        .online-code { font-size: 12px; font-weight: 700; color: #6366f1; background: #eef2ff; border: 1px solid #c7d2fe; padding: 3px 10px; border-radius: 50px; }
-
-        /* Empty state */
-        .empty-state {
-            text-align: center; padding: 60px 24px;
-            background: #fff; border-radius: 18px; border: 1px solid #e2e8f0;
-        }
-        .empty-icon { font-size: 56px; margin-bottom: 16px; }
-        .empty-title { font-size: 20px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
-        .empty-text { font-size: 14px; color: #64748b; max-width: 400px; margin: 0 auto 24px; line-height: 1.6; }
-        .btn-cta {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg,#0d9488,#0369a1); color: #fff;
-            padding: 12px 28px; border-radius: 12px; font-size: 14px; font-weight: 700;
-            text-decoration: none; transition: transform .15s, box-shadow .15s;
-        }
-        .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,.3); }
-
-        /* Summary bar */
-        .summary-bar {
-            display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px;
-        }
-        .summary-item {
-            background: #fff; border-radius: 16px; border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 16px rgba(15,23,42,.04);
-            padding: 20px 22px; display: flex; align-items: center; gap: 14px;
-        }
-        .summary-icon { font-size: 28px; }
-        .summary-num { font-size: 26px; font-weight: 800; color: #0f172a; }
-        .summary-lbl { font-size: 12px; color: #64748b; margin-top: 2px; }
-
-        @media (max-width: 768px) {
-            .hcard-meta { grid-template-columns: repeat(2,1fr); }
-            .summary-bar { grid-template-columns: 1fr 1fr; }
-            .tab-btn { font-size: 12px; }
-        }
-        @media (max-width: 480px) {
-            .summary-bar { grid-template-columns: 1fr; }
-            .hcard-meta { grid-template-columns: 1fr 1fr; }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- ============================================================================
+         HEADER & NAVBAR
+         ============================================================================ -->
     <header class="navbar-header">
         <div class="nav-container">
             <a href="/" class="nav-brand">
@@ -165,30 +21,53 @@
                     <span class="brand-subtitle">E-WARRANTY BASE</span>
                 </div>
             </a>
+
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Trang chủ</a></li>
-                <li><a th:href="@{/Warranty/History}" class="nav-link active">Lịch sử bảo hành</a></li>
                 <li><a th:href="@{/Warranty/Register}" class="nav-link">Đăng ký bảo hành</a></li>
+                <li><a th:href="@{/Warranty/History}" class="nav-link active">Lịch sử bảo hành</a></li>
+                <li><a th:href="@{/Warranty/Lookup}" class="nav-link">Tra cứu tiến độ</a></li>
             </ul>
+
             <div class="nav-right-actions">
+                <div class="phone-contact-pill">
+                    <span>📞</span> 0339.477.939
+                </div>
+                <a th:href="@{/Warranty/Register}" class="btn-primary-teal">
+                    Đăng ký bảo hành
+                </a>
+
+                <!-- User Profile Dropdown -->
                 <div class="user-profile-menu" id="userProfileMenu" onclick="toggleProfileDropdown(event)" sec:authorize="isAuthenticated()">
-                    <div class="user-avatar-circle" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : 'U'}">U</div>
-                    <span class="user-name-text" th:text="${userFullName}">Khách hàng</span>
-                    <span style="font-size:10px;color:#64748b;">▼</span>
+                    <div class="user-avatar-circle" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
+                    <span class="user-name-text" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</span>
+                    <span style="font-size: 10px; color: #64748b;">▼</span>
+
                     <div class="profile-dropdown-content" onclick="event.stopPropagation()">
                         <div class="profile-dropdown-header">
-                            <div class="user-avatar-circle" style="width:38px;height:38px;font-size:15px;" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : 'U'}">U</div>
+                            <div class="user-avatar-circle" style="width: 38px; height: 38px; font-size: 15px;" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
                             <div>
-                                <div class="dropdown-user-name" th:text="${userFullName}">Khách hàng</div>
+                                <div class="dropdown-user-name" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</div>
                                 <div class="dropdown-user-role">Khách hàng thành viên</div>
                             </div>
                         </div>
-                        <a th:href="@{/Account/Profile}" class="profile-dropdown-item"><span>👤</span> Thông tin cá nhân</a>
-                        <a th:href="@{/Account/ChangePassword}" class="profile-dropdown-item"><span>🔑</span> Đổi mật khẩu</a>
-                        <a th:href="@{/Warranty/History}" class="profile-dropdown-item active"><span>📋</span> Lịch sử bảo hành</a>
-                        <div style="height:1px;background:#f1f5f9;margin:6px 0;"></div>
-                        <form th:action="@{/Account/Logout}" method="post" style="margin:0;">
-                            <button type="submit" class="profile-dropdown-item logout-item"><span>🚪</span> Đăng xuất</button>
+
+                        <a th:href="@{/Account/Profile}" class="profile-dropdown-item">
+                            <span>👤</span> Thông tin cá nhân
+                        </a>
+                        <a th:href="@{/Account/ChangePassword}" class="profile-dropdown-item">
+                            <span>🔑</span> Đổi mật khẩu
+                        </a>
+                        <a th:href="@{/Warranty/History}" class="profile-dropdown-item active-drop">
+                            <span>📋</span> Lịch sử bảo hành
+                        </a>
+                        
+                        <div style="height: 1px; background: #f1f5f9; margin: 6px 0;"></div>
+
+                        <form th:action="@{/Account/Logout}" method="post" style="margin: 0;">
+                            <button type="submit" class="profile-dropdown-item logout-item">
+                                <span>🚪</span> Đăng xuất
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -196,153 +75,197 @@
         </div>
     </header>
 
-    <!-- HERO -->
-    <div class="page-hero">
-        <p style="font-size:13px;color:#38bdf8;margin-bottom:8px;">
-            <a href="/" style="color:#38bdf8;text-decoration:none;">Trang chủ</a> › Lịch sử bảo hành
-        </p>
-        <h1>📋 Lịch Sử Bảo Hành & Sửa Chữa</h1>
-        <p>Theo dõi toàn bộ quá trình bảo hành và sửa chữa thiết bị của bạn</p>
-    </div>
-
-    <!-- MAIN -->
-    <div class="main-wrapper">
-
-        <!-- Summary -->
-        <div class="summary-bar">
-            <div class="summary-item">
-                <div class="summary-icon">📦</div>
-                <div>
-                    <div class="summary-num" th:text="${totalPhieu}">0</div>
-                    <div class="summary-lbl">Phiếu sửa chữa / bảo hành</div>
-                </div>
+    <!-- ============================================================================
+         PAGE CONTENT
+         ============================================================================ -->
+    <main class="page-container">
+        
+        <!-- Header Banner Title -->
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 28px;">
+            <div>
+                <h1 style="font-size: 28px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px;">Quản Lý Lịch Sử Bảo Hành & Sửa Chữa</h1>
+                <p style="font-size: 14px; color: #64748b; margin-top: 4px;">Theo dõi toàn bộ tiến độ xử lý thiết bị của bạn theo thời gian thực.</p>
             </div>
-            <div class="summary-item">
-                <div class="summary-icon">🌐</div>
-                <div>
-                    <div class="summary-num" th:text="${totalOnline}">0</div>
-                    <div class="summary-lbl">Yêu cầu trực tuyến</div>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-icon">🛡️</div>
-                <div>
-                    <a th:href="@{/Warranty/Register}" class="btn-cta" style="padding:10px 20px;font-size:13px;">+ Đăng ký mới</a>
-                    <div class="summary-lbl" style="margin-top:6px;">Đăng ký bảo hành mới</div>
-                </div>
+            <div style="display: flex; gap: 10px;">
+                <a th:href="@{/Warranty/Register(mode='ONLINE_REQUEST')}" class="btn-primary-teal" style="font-size: 13px; padding: 10px 18px;">
+                    ➕ Gửi Yêu Cầu Bảo Hành Mới
+                </a>
             </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="tab-bar">
-            <button class="tab-btn active" id="tab-phieu" onclick="switchTab('phieu')">
-                📦 Phiếu tiếp nhận
-                <span class="tab-badge" th:text="${totalPhieu}">0</span>
-            </button>
-            <button class="tab-btn" id="tab-online" onclick="switchTab('online')">
-                🌐 Yêu cầu trực tuyến
-                <span class="tab-badge" th:text="${totalOnline}">0</span>
-            </button>
-        </div>
-
-        <!-- Tab: Phiếu tiếp nhận -->
-        <div id="panel-phieu" class="cards-grid">
-            <th:block th:if="${history != null and !history.empty}">
-                <div class="history-card" th:each="item : ${history}">
-                    <div class="hcard-top">
-                        <div class="hcard-left">
-                            <div class="device-name" th:text="${item.tenThietBi}">Thiết bị</div>
-                            <div class="device-serial" th:text="'Serial/IMEI: ' + ${item.soSerial}">SN: N/A</div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-                            <span class="ticket-code" th:text="${item.maPhieu}">#TN-0000</span>
-                            <span th:class="'badge ' + ${item.badgeClass}" th:text="${item.badgeText}">Đang xử lý</span>
-                        </div>
-                    </div>
-                    <div class="hcard-meta">
-                        <div class="meta-item">
-                            <div class="meta-label">Trạm dịch vụ</div>
-                            <div class="meta-value" th:text="${item.tenTram}">LML Service</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Ngày tiếp nhận</div>
-                            <div class="meta-value" th:text="${item.ngayTiepNhan}">--/--/----</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Ngày hẹn trả</div>
-                            <div class="meta-value" th:text="${item.ngayHenTra}">Đang cập nhật</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Chi phí dự kiến</div>
-                            <div class="meta-value" th:text="${item.chiPhiDuKien}" style="color:#0d9488;">Miễn phí</div>
-                        </div>
-                    </div>
-                    <div class="hcard-bottom">
-                        <div class="desc-text">
-                            <strong>Mô tả lỗi:</strong> <span th:text="${item.moTaLoi}">—</span>
-                        </div>
-                        <div style="font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;" th:text="${item.loaiYeuCau}">Bảo hành</div>
-                    </div>
-                </div>
-            </th:block>
-            <div class="empty-state" th:if="${history == null or history.empty}">
-                <div class="empty-icon">📦</div>
-                <div class="empty-title">Chưa có phiếu bảo hành nào</div>
-                <div class="empty-text">Bạn chưa có phiếu tiếp nhận sửa chữa hay bảo hành nào tại trung tâm.<br>Hãy đăng ký bảo hành trực tuyến để được hỗ trợ!</div>
-                <a th:href="@{/Warranty/Register}" class="btn-cta">🛡️ Đăng ký bảo hành ngay</a>
+        <!-- Metric Stat Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px;">
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Tổng số phiếu</div>
+                <div style="font-size: 28px; font-weight: 900; color: #0f172a; margin-top: 4px;" th:text="${totalTickets}">3</div>
+            </div>
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="font-size: 12px; font-weight: 700; color: #0284c7; text-transform: uppercase;">Đang xử lý / Sửa</div>
+                <div style="font-size: 28px; font-weight: 900; color: #0284c7; margin-top: 4px;" th:text="${repairingCount}">1</div>
+            </div>
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="font-size: 12px; font-weight: 700; color: #d97706; text-transform: uppercase;">Chờ linh kiện</div>
+                <div style="font-size: 28px; font-weight: 900; color: #d97706; margin-top: 4px;" th:text="${waitingCount}">1</div>
+            </div>
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="font-size: 12px; font-weight: 700; color: #059669; text-transform: uppercase;">Hoàn thành / Đã nhận</div>
+                <div style="font-size: 28px; font-weight: 900; color: #059669; margin-top: 4px;" th:text="${completedCount}">1</div>
             </div>
         </div>
 
-        <!-- Tab: Yêu cầu online -->
-        <div id="panel-online" class="cards-grid" style="display:none;">
-            <th:block th:if="${onlineRequests != null and !onlineRequests.empty}">
-                <div class="online-card" th:each="req : ${onlineRequests}">
-                    <div class="online-left">
-                        <div class="online-model" th:text="${req.hangModel}">Hãng / Model</div>
-                        <div class="online-serial" th:text="'Serial/IMEI: ' + ${req.soSerial}">SN: —</div>
-                        <div class="online-info">
-                            <span th:if="${req.tenTram != null}">📍 <span th:text="${req.tenTram}">Trạm</span></span>
-                            <span>📅 <span th:text="${req.ngayTao}">--/--/----</span></span>
-                        </div>
+        <!-- Filters & Search Bar -->
+        <div class="history-filters-bar">
+            <div class="filter-pills-row">
+                <a th:href="@{/Warranty/History(status='ALL', search=${currentSearch})}" class="filter-pill" th:classappend="${currentStatus == 'ALL' ? 'active' : ''}">
+                    Tất cả (<span th:text="${totalTickets}">3</span>)
+                </a>
+                <a th:href="@{/Warranty/History(status='PROCESSING', search=${currentSearch})}" class="filter-pill" th:classappend="${currentStatus == 'PROCESSING' ? 'active' : ''}">
+                    ⚙️ Đang xử lý (<span th:text="${repairingCount}">1</span>)
+                </a>
+                <a th:href="@{/Warranty/History(status='WAITING', search=${currentSearch})}" class="filter-pill" th:classappend="${currentStatus == 'WAITING' ? 'active' : ''}">
+                    ⏳ Chờ linh kiện (<span th:text="${waitingCount}">1</span>)
+                </a>
+                <a th:href="@{/Warranty/History(status='COMPLETED', search=${currentSearch})}" class="filter-pill" th:classappend="${currentStatus == 'COMPLETED' ? 'active' : ''}">
+                    ✅ Hoàn thành (<span th:text="${completedCount}">1</span>)
+                </a>
+            </div>
+
+            <form th:action="@{/Warranty/History}" method="get" class="search-box-wrap">
+                <input type="hidden" name="status" th:value="${currentStatus}" />
+                <input type="text" name="search" th:value="${currentSearch}" placeholder="Tìm theo mã phiếu, Serial, tên máy..." />
+                <button type="submit" class="search-btn-icon">🔍</button>
+            </form>
+        </div>
+
+        <!-- List of Tickets -->
+        <div class="ticket-cards-grid">
+            <div th:each="t : ${tickets}" class="ticket-card-box">
+                <div class="ticket-card-header">
+                    <div class="ticket-code-tag">
+                        <span>🏷️</span> <span th:text="${t.maPhieu}">#TN-2026-0917-00421</span>
                     </div>
-                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-                        <span class="online-code" th:text="${req.maYeuCau}">YC-00000000</span>
-                        <span th:class="'badge ' + ${req.badgeClass}" th:text="${req.badgeText}">Đang chờ</span>
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <span class="badge" th:classappend="${t.trangThaiClass}" th:text="${t.trangThaiBadgeText}">Đang sửa chữa</span>
+                        <span class="ticket-date-info" th:text="${'Ngày nhận: ' + t.ngayTiepNhanStr}">Ngày nhận: 17/09/2026</span>
                     </div>
                 </div>
-            </th:block>
-            <div class="empty-state" th:if="${onlineRequests == null or onlineRequests.empty}">
-                <div class="empty-icon">🌐</div>
-                <div class="empty-title">Chưa có yêu cầu trực tuyến nào</div>
-                <div class="empty-text">Bạn chưa gửi yêu cầu bảo hành trực tuyến nào. Hãy đăng ký để được xếp lịch hẹn trước!</div>
-                <a th:href="@{/Warranty/Register}" class="btn-cta">🛡️ Đăng ký bảo hành ngay</a>
+
+                <div class="ticket-card-body">
+                    <div>
+                        <h3 class="ticket-device-title" th:text="${t.tenThietBi}">MacBook Air M2 13.6 inch Midnight</h3>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <span class="device-serial-pill" th:text="${t.soSerial}">SN: C02G789X01</span>
+                            <span style="font-size: 13px; font-weight: 700; color: #0284c7;" th:text="${t.hangSanXuat}">Apple</span>
+                        </div>
+
+                        <div class="ticket-issue-desc">
+                            <strong>Mô tả lỗi:</strong> <span th:text="${t.moTaLoi}">Máy sạc không vào pin, kiểm tra báo pin xuống cấp dưới 75%</span>
+                        </div>
+                    </div>
+
+                    <div class="ticket-meta-list">
+                        <div class="ticket-meta-item">
+                            <span>📍</span> <span><strong>Trạm:</strong> <span th:text="${t.tenTram}">Trạm Dịch Vụ TP.HCM</span></span>
+                        </div>
+                        <div class="ticket-meta-item">
+                            <span>👨‍🔧</span> <span><strong>KTV phụ trách:</strong> <span th:text="${t.tenKTVPhuTrach}">Trần Văn Nam</span></span>
+                        </div>
+                        <div class="ticket-meta-item">
+                            <span>📅</span> <span><strong>Hẹn trả máy:</strong> <span style="color: #0d9488; font-weight: 700;" th:text="${t.ngayHenTraStr}">19/09/2026</span></span>
+                        </div>
+                        <div class="ticket-meta-item">
+                            <span>💰</span> <span><strong>Chi phí dự kiến:</strong> <span th:text="${t.chiPhiDuKienStr}">0 đ (Miễn phí BH)</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action & Quick Timeline -->
+                <div class="ticket-card-footer">
+                    <div style="font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+                        <span>🛡️</span> Gói cam kết: <strong style="color: #475569;" th:text="${t.mucSLA}">STANDARD_48H</strong>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <a th:href="@{'/Warranty/Detail/' + ${t.maPhieu}}" class="btn-primary-teal" style="font-size: 12px; padding: 7px 16px;">
+                            👁️ Xem Chi Tiết Tiến Độ
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div th:if="${#lists.isEmpty(tickets)}" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 60px 24px; text-align: center;">
+                <div style="font-size: 48px; margin-bottom: 16px;">📦</div>
+                <h3 style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">Không tìm thấy phiếu bảo hành nào</h3>
+                <p style="font-size: 13px; color: #64748b; max-width: 480px; margin: 0 auto 20px auto;">
+                    Bạn chưa có thiết bị nào đang gửi bảo hành hoặc không có phiếu nào khớp với từ khóa tìm kiếm.
+                </p>
+                <a th:href="@{/Warranty/Register}" class="btn-primary-teal" style="padding: 10px 24px; font-size: 13px;">
+                    ➕ Đăng Ký Bảo Hành Ngay
+                </a>
             </div>
         </div>
 
-    </div>
+    </main>
 
-    <!-- Footer -->
-    <footer style="text-align:center;padding:30px;color:#94a3b8;font-size:13px;border-top:1px solid #e2e8f0;">
-        © 2026 LongManLoc Service Center. Mọi quyền được bảo lưu.
+    <!-- ============================================================================
+         FOOTER
+         ============================================================================ -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-col-about">
+                <div class="footer-brand">
+                    <div class="brand-icon-box">LML</div>
+                    <span class="footer-brand-title">LongManLoc Service</span>
+                </div>
+                <p class="footer-desc">
+                    Hệ thống trạm dịch vụ bảo hành và sửa chữa điện tử, điện máy tiêu chuẩn quốc tế.
+                </p>
+                <div class="footer-contact-info">
+                    <span>📍 Trụ sở chính: 123 CMT8, Quận 10, TP. Hồ Chí Minh</span>
+                    <span>📞 Hotline CSKH: 0339.477.939 (8:00 - 20:00)</span>
+                </div>
+            </div>
+
+            <div class="footer-col-links">
+                <h4 class="footer-col-title">Dịch Vụ</h4>
+                <ul class="footer-links-ul">
+                    <li><a th:href="@{/Warranty/Register}">Đăng ký bảo hành</a></li>
+                    <li><a th:href="@{/Warranty/History}">Lịch sử bảo hành</a></li>
+                    <li><a th:href="@{/Warranty/Lookup}">Tra cứu tiến độ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col-links">
+                <h4 class="footer-col-title">Tài Khoản</h4>
+                <ul class="footer-links-ul">
+                    <li><a th:href="@{/Account/Profile}">Thông tin cá nhân</a></li>
+                    <li><a th:href="@{/Account/ChangePassword}">Đổi mật khẩu</a></li>
+                    <li><a th:href="@{/Account/Login}">Đăng nhập</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-strip">
+            <div>© 2026 LongManLoc E-Warranty. All rights reserved.</div>
+            <div>Bảo mật chứng nhận SSL 256-bit</div>
+        </div>
     </footer>
 
     <script>
-        function toggleProfileDropdown(e) {
-            e.stopPropagation();
-            document.getElementById('userProfileMenu').classList.toggle('open');
+        function toggleProfileDropdown(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('userProfileMenu');
+            if (menu) {
+                menu.classList.toggle('active');
+            }
         }
-        document.addEventListener('click', () => {
-            document.getElementById('userProfileMenu')?.classList.remove('open');
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('userProfileMenu');
+            if (menu && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
         });
-
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('panel-phieu').style.display = 'none';
-            document.getElementById('panel-online').style.display = 'none';
-
-            document.getElementById('tab-' + tab).classList.add('active');
-            document.getElementById('panel-' + tab).style.display = 'flex';
-        }
     </script>
 </body>
 </html>

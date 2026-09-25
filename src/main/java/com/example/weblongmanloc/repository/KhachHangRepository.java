@@ -1,7 +1,6 @@
 package com.example.weblongmanloc.repository;
 
 import com.example.weblongmanloc.entity.KhachHang;
-import com.example.weblongmanloc.entity.TaiKhoan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,8 +17,6 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, String> {
     Optional<KhachHang> findBySdt(String sdt);
 
     Optional<KhachHang> findByEmail(String email);
-
-    Optional<KhachHang> findByTaiKhoan(TaiKhoan taiKhoan);
 
     @Query(value = "SELECT COUNT(*) FROM KhachHang", nativeQuery = true)
     long countAllKhachHang();

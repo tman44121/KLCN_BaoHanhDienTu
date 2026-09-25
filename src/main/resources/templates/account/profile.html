@@ -3,178 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thông Tin Cá Nhân – LongManLoc</title>
+    <title>Thông Tin Cá Nhân – LongManLoc E-WARRANTY BASE</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" th:href="@{/css/home.css}" />
-    <style>
-        :root {
-            --teal: #0d9488;
-            --teal-light: #14b8a6;
-            --navy: #0f172a;
-            --navy-2: #1e293b;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-            --text-muted: #64748b;
-        }
-
-        body { background: #f8fafc; font-family: 'Inter', sans-serif; }
-
-        .page-hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0d9488 100%);
-            color: #fff;
-            padding: 48px 24px 80px;
-            text-align: center;
-        }
-        .page-hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
-        .page-hero p { color: #94a3b8; font-size: 15px; }
-
-        .profile-layout {
-            max-width: 960px;
-            margin: -48px auto 60px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 24px;
-        }
-
-        /* ─── Sidebar ───────────────────────────────── */
-        .profile-sidebar {
-            background: #fff;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 8px 32px rgba(15,23,42,.06);
-            padding: 32px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            align-self: start;
-        }
-        .avatar-big {
-            width: 88px; height: 88px;
-            border-radius: 50%;
-            background: linear-gradient(135deg,#0d9488,#1e3a8a);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: 800; color: #fff;
-            box-shadow: 0 6px 20px rgba(13,148,136,.3);
-        }
-        .sidebar-name {
-            font-size: 17px; font-weight: 700; color: #0f172a; text-align: center;
-        }
-        .sidebar-role {
-            font-size: 12px; font-weight: 600; color: #0d9488;
-            background: #f0fdfa; border: 1px solid #99f6e4;
-            padding: 3px 12px; border-radius: 50px;
-        }
-        .sidebar-id {
-            font-size: 12px; color: #94a3b8; font-family: monospace;
-        }
-        .sidebar-divider { width: 100%; height: 1px; background: var(--border); margin: 8px 0; }
-        .sidebar-nav a {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 14px; border-radius: 10px;
-            font-size: 14px; font-weight: 500; color: #475569;
-            text-decoration: none; transition: all .2s;
-            width: 100%;
-        }
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            background: #f0fdfa; color: #0d9488;
-        }
-        .sidebar-nav a.active { font-weight: 700; }
-
-        /* ─── Main Card ─────────────────────────────── */
-        .profile-main {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .info-card {
-            background: #fff;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 8px 32px rgba(15,23,42,.06);
-            overflow: hidden;
-        }
-        .card-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 20px 24px; border-bottom: 1px solid var(--border);
-        }
-        .card-header-left { display: flex; align-items: center; gap: 12px; }
-        .card-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
-        }
-        .card-icon.teal { background: #f0fdfa; }
-        .card-icon.blue { background: #eff6ff; }
-        .card-title { font-size: 16px; font-weight: 700; color: #0f172a; }
-        .card-subtitle { font-size: 12px; color: #94a3b8; margin-top: 2px; }
-        .card-body { padding: 24px; }
-
-        /* Form fields */
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-        .form-row.single { grid-template-columns: 1fr; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .form-label {
-            font-size: 12px; font-weight: 600; color: #64748b;
-            text-transform: uppercase; letter-spacing: .5px;
-        }
-        .form-control {
-            padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px;
-            font-size: 14px; font-family: 'Inter', sans-serif; color: #0f172a;
-            transition: border-color .2s, box-shadow .2s; background: #fff;
-            outline: none;
-        }
-        .form-control:focus {
-            border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,.1);
-        }
-        .form-control[readonly] {
-            background: #f8fafc; color: #64748b; cursor: not-allowed;
-        }
-
-        /* Readonly info display */
-        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-        .info-item label {
-            font-size: 11px; font-weight: 600; color: #94a3b8;
-            text-transform: uppercase; letter-spacing: .6px; display: block; margin-bottom: 4px;
-        }
-        .info-value {
-            font-size: 14px; font-weight: 500; color: #0f172a;
-            padding: 10px 14px; background: #f8fafc; border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        /* Alert */
-        .alert { padding: 14px 18px; border-radius: 12px; font-size: 14px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
-        .alert-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
-
-        /* Button */
-        .btn-save {
-            background: linear-gradient(135deg, #0d9488, #0369a1);
-            color: #fff; border: none; padding: 12px 28px;
-            border-radius: 12px; font-size: 14px; font-weight: 700;
-            cursor: pointer; transition: transform .15s, box-shadow .15s;
-            display: inline-flex; align-items: center; gap: 8px;
-        }
-        .btn-save:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,148,136,.3); }
-        .btn-back {
-            background: #f1f5f9; color: #475569; border: none; padding: 12px 20px;
-            border-radius: 12px; font-size: 14px; font-weight: 600;
-            cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 8px;
-        }
-        .btn-actions { display: flex; gap: 12px; margin-top: 20px; }
-
-        @media (max-width: 768px) {
-            .profile-layout { grid-template-columns: 1fr; margin-top: -30px; }
-            .form-row, .info-row { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- ============================================================================
+         HEADER & NAVBAR
+         ============================================================================ -->
     <header class="navbar-header">
         <div class="nav-container">
             <a href="/" class="nav-brand">
@@ -184,25 +21,38 @@
                     <span class="brand-subtitle">E-WARRANTY BASE</span>
                 </div>
             </a>
+
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Trang chủ</a></li>
-                <li><a th:href="@{/Warranty/History}" class="nav-link">Lịch sử bảo hành</a></li>
                 <li><a th:href="@{/Warranty/Register}" class="nav-link">Đăng ký bảo hành</a></li>
+                <li><a th:href="@{/Warranty/History}" class="nav-link">Lịch sử bảo hành</a></li>
+                <li><a th:href="@{/Warranty/Lookup}" class="nav-link">Tra cứu tiến độ</a></li>
             </ul>
+
             <div class="nav-right-actions">
+                <div class="phone-contact-pill">
+                    <span>📞</span> 0339.477.939
+                </div>
+                <a th:href="@{/Warranty/Register}" class="btn-primary-teal">
+                    Đăng ký bảo hành
+                </a>
+
+                <!-- User Profile Dropdown -->
                 <div class="user-profile-menu" id="userProfileMenu" onclick="toggleProfileDropdown(event)" sec:authorize="isAuthenticated()">
-                    <div class="user-avatar-circle" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : 'U'}">U</div>
-                    <span class="user-name-text" th:text="${userFullName}">Khách hàng</span>
-                    <span style="font-size:10px;color:#64748b;">▼</span>
+                    <div class="user-avatar-circle" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
+                    <span class="user-name-text" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</span>
+                    <span style="font-size: 10px; color: #64748b;">▼</span>
+
                     <div class="profile-dropdown-content" onclick="event.stopPropagation()">
                         <div class="profile-dropdown-header">
-                            <div class="user-avatar-circle" style="width:38px;height:38px;font-size:15px;" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : 'U'}">U</div>
+                            <div class="user-avatar-circle" style="width: 38px; height: 38px; font-size: 15px;" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
                             <div>
-                                <div class="dropdown-user-name" th:text="${userFullName}">Khách hàng</div>
+                                <div class="dropdown-user-name" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</div>
                                 <div class="dropdown-user-role">Khách hàng thành viên</div>
                             </div>
                         </div>
-                        <a th:href="@{/Account/Profile}" class="profile-dropdown-item active">
+
+                        <a th:href="@{/Account/Profile}" class="profile-dropdown-item active-drop">
                             <span>👤</span> Thông tin cá nhân
                         </a>
                         <a th:href="@{/Account/ChangePassword}" class="profile-dropdown-item">
@@ -211,8 +61,10 @@
                         <a th:href="@{/Warranty/History}" class="profile-dropdown-item">
                             <span>📋</span> Lịch sử bảo hành
                         </a>
-                        <div style="height:1px;background:#f1f5f9;margin:6px 0;"></div>
-                        <form th:action="@{/Account/Logout}" method="post" style="margin:0;">
+                        
+                        <div style="height: 1px; background: #f1f5f9; margin: 6px 0;"></div>
+
+                        <form th:action="@{/Account/Logout}" method="post" style="margin: 0;">
                             <button type="submit" class="profile-dropdown-item logout-item">
                                 <span>🚪</span> Đăng xuất
                             </button>
@@ -223,135 +75,220 @@
         </div>
     </header>
 
-    <!-- HERO -->
-    <div class="page-hero">
-        <p style="font-size:13px;color:#38bdf8;margin-bottom:8px;">
-            <a href="/" style="color:#38bdf8;text-decoration:none;">Trang chủ</a> › Tài khoản › Thông tin cá nhân
-        </p>
-        <h1>👤 Thông Tin Cá Nhân</h1>
-        <p>Xem và cập nhật thông tin tài khoản của bạn</p>
-    </div>
+    <!-- ============================================================================
+         PAGE CONTENT
+         ============================================================================ -->
+    <main class="page-container">
+        
+        <!-- Breadcrumb -->
+        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 24px;">
+            <a href="/" style="color: #0d9488; font-weight: 600;">Trang chủ</a> / <span>Thông tin tài khoản</span>
+        </div>
 
-    <!-- MAIN LAYOUT -->
-    <div class="profile-layout">
+        <!-- Success/Error Alerts -->
+        <div th:if="${successMessage}" style="background: #ecfdf5; color: #047857; padding: 14px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; margin-bottom: 24px; border: 1px solid #a7f3d0; display: flex; align-items: center; gap: 10px;">
+            <span>✅</span> <span th:text="${successMessage}">Cập nhật thành công!</span>
+        </div>
 
-        <!-- Sidebar -->
-        <aside class="profile-sidebar">
-            <div class="avatar-big" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : 'U'}">U</div>
-            <div class="sidebar-name" th:text="${userFullName ?: 'Khách hàng'}">Khách hàng</div>
-            <div class="sidebar-role">Khách hàng thành viên</div>
-            <div class="sidebar-id" th:if="${profile != null and profile.maKH != null}" th:text="${profile.maKH}">KH-000001</div>
-            <div class="sidebar-divider"></div>
-            <nav class="sidebar-nav" style="width:100%;">
-                <a th:href="@{/Account/Profile}" class="active">👤 Thông tin cá nhân</a>
-                <a th:href="@{/Account/ChangePassword}">🔑 Đổi mật khẩu</a>
-                <a th:href="@{/Warranty/History}">📋 Lịch sử bảo hành</a>
-                <a th:href="@{/Warranty/Register}">🛡️ Đăng ký bảo hành</a>
-            </nav>
-        </aside>
+        <div th:if="${errorMessage}" style="background: #fef2f2; color: #b91c1c; padding: 14px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; margin-bottom: 24px; border: 1px solid #fecaca; display: flex; align-items: center; gap: 10px;">
+            <span>⚠️</span> <span th:text="${errorMessage}">Đã có lỗi xảy ra!</span>
+        </div>
 
-        <!-- Main Content -->
-        <div class="profile-main">
+        <div class="profile-layout-grid">
+            
+            <!-- Left Sidebar -->
+            <aside class="user-sidebar-card">
+                <div class="user-big-avatar" th:text="${profileModel.hoTen != null ? #strings.substring(profileModel.hoTen, 0, 1).toUpperCase() : 'U'}">
+                    U
+                </div>
+                <h3 class="user-card-fullname" th:text="${profileModel.hoTen}">Nguyễn Văn A</h3>
+                <div class="user-card-phone">
+                    <span>📞</span> <span th:text="${profileModel.sdt}">0339477939</span>
+                </div>
+                <div>
+                    <span class="user-badge-role">🛡️ Khách Hàng Thành Viên</span>
+                </div>
 
-            <!-- Alert messages -->
-            <div class="alert alert-success" th:if="${successMessage}" th:text="'✅ ' + ${successMessage}"></div>
-            <div class="alert alert-error" th:if="${errorMessage}" th:text="'❌ ' + ${errorMessage}"></div>
-
-            <!-- Thông tin không thể chỉnh sửa -->
-            <div class="info-card">
-                <div class="card-header">
-                    <div class="card-header-left">
-                        <div class="card-icon teal">🔒</div>
-                        <div>
-                            <div class="card-title">Thông tin tài khoản</div>
-                            <div class="card-subtitle">Các thông tin này không thể thay đổi</div>
-                        </div>
+                <div class="sidebar-stats-row">
+                    <div class="stat-box-mini">
+                        <div class="stat-box-num" th:text="${profileModel.soThietBi}">2</div>
+                        <div class="stat-box-label">Thiết Bị</div>
+                    </div>
+                    <div class="stat-box-mini">
+                        <div class="stat-box-num" th:text="${profileModel.soPhieuBaoHanh}">3</div>
+                        <div class="stat-box-label">Phiếu Xử Lý</div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="info-row">
-                        <div class="info-item">
-                            <label>Mã khách hàng</label>
-                            <div class="info-value" th:text="${profile != null ? profile.maKH : 'Chưa có'}">KH-000001</div>
-                        </div>
-                        <div class="info-item">
-                            <label>Tên đăng nhập (SĐT)</label>
-                            <div class="info-value" th:text="${profile != null ? profile.tenDangNhap : ''}"></div>
-                        </div>
-                        <div class="info-item">
-                            <label>Số điện thoại</label>
-                            <div class="info-value" th:text="${profile != null ? profile.sdt : ''}"></div>
-                        </div>
-                        <div class="info-item">
-                            <label>Ngày tham gia</label>
-                            <div class="info-value" th:text="${profile != null ? profile.ngayTao : 'N/A'}">01/01/2026</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Form chỉnh sửa -->
-            <div class="info-card">
-                <div class="card-header">
-                    <div class="card-header-left">
-                        <div class="card-icon teal">✏️</div>
-                        <div>
-                            <div class="card-title">Thông tin có thể chỉnh sửa</div>
-                            <div class="card-subtitle">Cập nhật họ tên, email và địa chỉ của bạn</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form method="post" th:action="@{/Account/Profile}">
-                        <div th:if="${_csrf != null}">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Họ và tên *</label>
-                                <input type="text" name="hoTen" class="form-control" required maxlength="100"
-                                       th:value="${profile != null ? profile.hoTen : ''}"
-                                       placeholder="Nhập họ và tên đầy đủ" />
+                <nav class="sidebar-nav-links">
+                    <a th:href="@{/Account/Profile}" class="sidebar-nav-btn active">
+                        <span>👤</span> Hồ sơ cá nhân
+                    </a>
+                    <a th:href="@{/Account/ChangePassword}" class="sidebar-nav-btn">
+                        <span>🔑</span> Đổi mật khẩu
+                    </a>
+                    <a th:href="@{/Warranty/History}" class="sidebar-nav-btn">
+                        <span>📋</span> Lịch sử bảo hành
+                    </a>
+                    <a th:href="@{/Warranty/Register}" class="sidebar-nav-btn">
+                        <span>➕</span> Đăng ký thiết bị mới
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Right Content Form -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                
+                <!-- Profile Edit Card -->
+                <section class="content-panel-card">
+                    <h2 class="card-heading-title">Hồ Sơ Cá Nhân</h2>
+                    <p class="card-heading-desc">Quản lý và cập nhật thông tin liên hệ nhận thông báo bảo hành của bạn.</p>
+
+                    <form th:action="@{/Account/Profile}" th:object="${profileModel}" method="post">
+                        
+                        <div class="two-inputs-grid form-row-group">
+                            <div>
+                                <label for="hoTen" style="font-size: 12px; font-weight: 800; color: #334155; margin-bottom: 6px; display: block; text-transform: uppercase;">Họ và tên *</label>
+                                <input type="text" id="hoTen" th:field="*{hoTen}" class="regular-input" placeholder="Nhập họ và tên đầy đủ" required />
+                                <div th:if="${#fields.hasErrors('hoTen')}" style="color: #dc2626; font-size: 12px; margin-top: 4px;" th:errors="*{hoTen}"></div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" maxlength="100"
-                                       th:value="${profile != null ? profile.email : ''}"
-                                       placeholder="example@email.com" />
+                            <div>
+                                <label for="sdt" style="font-size: 12px; font-weight: 800; color: #334155; margin-bottom: 6px; display: block; text-transform: uppercase;">Số điện thoại (Tên đăng nhập)</label>
+                                <input type="text" id="sdt" th:field="*{sdt}" class="regular-input" style="background: #f1f5f9; cursor: not-allowed;" readonly />
                             </div>
                         </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label class="form-label">Địa chỉ</label>
-                                <input type="text" name="diaChi" class="form-control" maxlength="255"
-                                       th:value="${profile != null ? profile.diaChi : ''}"
-                                       placeholder="Số nhà, đường, quận/huyện, tỉnh/thành phố" />
+
+                        <div class="two-inputs-grid form-row-group">
+                            <div>
+                                <label for="email" style="font-size: 12px; font-weight: 800; color: #334155; margin-bottom: 6px; display: block; text-transform: uppercase;">Địa chỉ Email</label>
+                                <input type="email" id="email" th:field="*{email}" class="regular-input" placeholder="example@email.com" />
+                                <div th:if="${#fields.hasErrors('email')}" style="color: #dc2626; font-size: 12px; margin-top: 4px;" th:errors="*{email}"></div>
+                            </div>
+                            <div>
+                                <label for="maKH" style="font-size: 12px; font-weight: 800; color: #334155; margin-bottom: 6px; display: block; text-transform: uppercase;">Mã khách hàng</label>
+                                <input type="text" id="maKH" th:field="*{maKH}" class="regular-input" style="background: #f1f5f9; cursor: not-allowed; font-weight: 700; color: #0284c7;" readonly />
                             </div>
                         </div>
-                        <div class="btn-actions">
-                            <button type="submit" class="btn-save">💾 Lưu thay đổi</button>
-                            <a href="/" class="btn-back">← Về trang chủ</a>
+
+                        <div class="form-row-group">
+                            <label for="diaChi" style="font-size: 12px; font-weight: 800; color: #334155; margin-bottom: 6px; display: block; text-transform: uppercase;">Địa chỉ nhận trả thiết bị tận nơi</label>
+                            <input type="text" id="diaChi" th:field="*{diaChi}" class="regular-input" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" />
+                            <div th:if="${#fields.hasErrors('diaChi')}" style="color: #dc2626; font-size: 12px; margin-top: 4px;" th:errors="*{diaChi}"></div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 24px; padding-top: 20px; border-top: 1px solid #f1f5f9;">
+                            <div style="font-size: 12px; color: #94a3b8;">
+                                Ngày tham gia: <strong style="color: #475569;" th:text="${profileModel.ngayThamGia}">01/09/2026</strong>
+                            </div>
+                            <button type="submit" class="btn-primary-teal" style="padding: 10px 24px; font-size: 14px;">
+                                💾 Lưu Thay Đổi
+                            </button>
                         </div>
                     </form>
-                </div>
+                </section>
+
+                <!-- Registered Devices Section -->
+                <section class="content-panel-card">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                        <div>
+                            <h2 class="card-heading-title" style="margin-bottom: 2px;">Thiết Bị Của Bạn</h2>
+                            <p class="card-heading-desc" style="margin-bottom: 0;">Danh sách thiết bị điện tử đã kích hoạt gắn liền với tài khoản của bạn.</p>
+                        </div>
+                        <a th:href="@{/Warranty/Register}" class="btn-primary-teal" style="font-size: 12px; padding: 8px 16px;">
+                            ➕ Kích Hoạt Thiết Bị Mới
+                        </a>
+                    </div>
+
+                    <div class="devices-list-grid">
+                        <div th:each="dev : ${customerDevices}" class="device-item-card">
+                            <div class="device-info-col">
+                                <div class="device-avatar-box">💻</div>
+                                <div>
+                                    <div class="device-title-name" th:text="${dev.tenSP}">MacBook Air M2 13.6 inch</div>
+                                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 4px;">
+                                        <span class="device-serial-pill" th:text="${dev.soSerial}">SN: C02G789X01</span>
+                                        <span style="font-size: 12px; color: #64748b;" th:text="${dev.hangSanXuat}">Apple</span>
+                                    </div>
+                                    <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">
+                                        Hạn bảo hành: <strong th:text="${dev.ngayHetHanStr}">15/01/2028</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                <span class="badge" th:classappend="${dev.trangThaiBadgeClass}" th:text="${dev.trangThaiBadgeText}">Còn hạn</span>
+                                <a th:href="@{/Warranty/Register(mode='ONLINE_REQUEST', serial=${dev.soSerial})}" class="btn-secondary-white" style="font-size: 11px; padding: 5px 12px;">
+                                    🔧 Yêu cầu sửa chữa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </div>
 
         </div>
-    </div>
 
-    <!-- Footer minimal -->
-    <footer style="text-align:center;padding:30px;color:#94a3b8;font-size:13px;border-top:1px solid #e2e8f0;">
-        © 2026 LongManLoc Service Center. Mọi quyền được bảo lưu.
+    </main>
+
+    <!-- ============================================================================
+         FOOTER
+         ============================================================================ -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-col-about">
+                <div class="footer-brand">
+                    <div class="brand-icon-box">LML</div>
+                    <span class="footer-brand-title">LongManLoc Service</span>
+                </div>
+                <p class="footer-desc">
+                    Hệ thống trạm dịch vụ bảo hành và sửa chữa điện tử, điện máy tiêu chuẩn quốc tế.
+                </p>
+                <div class="footer-contact-info">
+                    <span>📍 Trụ sở chính: 123 CMT8, Quận 10, TP. Hồ Chí Minh</span>
+                    <span>📞 Hotline CSKH: 0339.477.939 (8:00 - 20:00)</span>
+                    <span>✉️ Email hỗ trợ: support@longmanloc.vn</span>
+                </div>
+            </div>
+
+            <div class="footer-col-links">
+                <h4 class="footer-col-title">Dịch Vụ</h4>
+                <ul class="footer-links-ul">
+                    <li><a th:href="@{/Warranty/Register}">Đăng ký bảo hành</a></li>
+                    <li><a th:href="@{/Warranty/History}">Lịch sử bảo hành</a></li>
+                    <li><a th:href="@{/Warranty/Lookup}">Tra cứu tiến độ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col-links">
+                <h4 class="footer-col-title">Tài Khoản</h4>
+                <ul class="footer-links-ul">
+                    <li><a th:href="@{/Account/Profile}">Thông tin cá nhân</a></li>
+                    <li><a th:href="@{/Account/ChangePassword}">Đổi mật khẩu</a></li>
+                    <li><a th:href="@{/Account/Login}">Đăng nhập</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-strip">
+            <div>© 2026 LongManLoc E-Warranty. All rights reserved.</div>
+            <div>Bảo mật chứng nhận SSL 256-bit</div>
+        </div>
     </footer>
 
     <script>
-        function toggleProfileDropdown(e) {
-            e.stopPropagation();
+        function toggleProfileDropdown(event) {
+            event.stopPropagation();
             const menu = document.getElementById('userProfileMenu');
-            menu.classList.toggle('open');
+            if (menu) {
+                menu.classList.toggle('active');
+            }
         }
-        document.addEventListener('click', () => {
-            document.getElementById('userProfileMenu')?.classList.remove('open');
+
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('userProfileMenu');
+            if (menu && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
         });
     </script>
 </body>

@@ -24,10 +24,10 @@
 
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link active">Trang chủ</a></li>
+                <li><a th:href="@{/Warranty/Register}" class="nav-link">Đăng ký bảo hành</a></li>
+                <li><a th:href="@{/Warranty/History}" class="nav-link">Lịch sử bảo hành</a></li>
+                <li><a th:href="@{/Warranty/Lookup}" class="nav-link">Tra cứu tiến độ</a></li>
                 <li><a href="#about" class="nav-link">Giới thiệu</a></li>
-                <li><a href="#features" class="nav-link">Tính năng</a></li>
-                <li><a href="#tracking" class="nav-link">Tra cứu tiến độ</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/Warranty/History}" class="nav-link">Lịch sử bảo hành</a></li>
                 <li><a href="#contact" class="nav-link">Liên hệ</a></li>
             </ul>
 
@@ -74,6 +74,11 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- If Anonymous: Login link -->
+                <a th:href="@{/Account/Login}" class="btn-secondary-white" sec:authorize="isAnonymous()">
+                    Đăng nhập
+                </a>
             </div>
         </div>
     </header>
@@ -151,7 +156,7 @@
                         <span class="dispatch-title">🛠️ TIẾN ĐỘ SỬA CHỮA THIẾT BỊ CỦA BẠN</span>
                         <div style="font-size: 10px; color: #64748b; font-weight: 500;">Theo dõi trực tiếp theo thời gian thực</div>
                     </div>
-                    <a href="#" class="dispatch-link">Tất cả thiết bị →</a>
+                    <a th:href="@{/Warranty/History}" class="dispatch-link">Xem tất cả thiết bị →</a>
                 </div>
 
                 <!-- Customer Device Tickets List -->
