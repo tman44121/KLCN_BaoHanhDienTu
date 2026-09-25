@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký Bảo Hành Sản Phẩm – LongManLoc</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <style>
+        /* CSS riêng biệt bổ sung cho trang Đăng ký bảo hành sản phẩm */
+        .warranty-hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0d9488 100%);
+            color: #ffffff;
+            padding: 50px 24px 70px 24px;
+            text-align: center;
+        }
+
+        .breadcrumb-text {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+        .breadcrumb-text a {
+            color: #38bdf8;
+        }
+
+        .warranty-title {
+            font-size: 38px;
+            font-weight: 900;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .warranty-subtitle {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 680px;
+            margin: 0 auto 24px auto;
+            line-height: 1.6;
+        }
+
+        .hero-badges-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .hero-badge-pill {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        /* 3 Method Cards */
+        .method-cards-section {
+            max-width: 1200px;
+            margin: -40px auto 40px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .method-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease;
+        }
+
+        .method-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .method-card.active-method {
+            border: 2px solid #0d9488;
+        }
+
+        .method-card-badge {
+            align-self: flex-start;
+            background: #0d9488;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .method-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #ccfbf1;
+            color: #0d9488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 14px;
+        }
+
+        .method-card-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .method-card-desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-method-action {
+            width: 100%;
+            padding: 10px;
+            border-radius: 50px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            color: #0f172a;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-method-action.primary {
+            background: #0d9488;
+            color: #ffffff;
+            border: none;
+        }
+
+        /* Form & Sidebar Grid */
+        .register-main-container {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .form-card-panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .tab-switcher-pills {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+            width: fit-content;
+        }
+
+        .tab-pill-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .tab-pill-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .step-progress-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .step-item-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .step-item-head.active {
+            color: #0d9488;
+        }
+
+        .step-circle-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .step-item-head.active .step-circle-num {
+            background: #0d9488;
+            color: #ffffff;
+        }
+
+        .step-line-divider {
+            flex: 1;
+            height: 2px;
+            background: #e2e8f0;
+        }
+
+        .form-row-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #334155;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .input-with-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-button input {
+            width: 100%;
+            padding: 12px 120px 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 14px;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .input-with-button input:focus {
+            border-color: #0d9488;
+            background: #ffffff;
+        }
+
+        .btn-inside-input {
+            position: absolute;
+            right: 6px;
+            background: #ccfbf1;
+            color: #0d9488;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .two-inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .regular-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            font-size: 14px;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .regular-input:focus {
+            border-color: #0d9488;
+            background: #ffffff;
+        }
+
+        /* Drag & Drop File Area */
+        .dropzone-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dropzone-area:hover {
+            border-color: #0d9488;
+            background: #f0fdf4;
+        }
+
+        .dropzone-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ccfbf1;
+            color: #0d9488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-size: 18px;
+        }
+
+        /* Sidebar Benefits Panel */
+        .sidebar-benefits-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-item-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .benefit-icon-box {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .benefit-text h5 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .benefit-text p {
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .support-box-white {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .support-box-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+
+        .support-phone-num {
+            font-size: 18px;
+            font-weight: 900;
+            color: #0f172a;
+            margin: 4px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================================
+         HEADER & NAVBAR (Aligned & Hover Profile Dropdown)
+         ============================================================================ -->
+    <header class="navbar-header">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <div class="brand-icon-box">LML</div>
+                <div class="brand-text">
+                    <span class="brand-title">LongManLoc</span>
+                    <span class="brand-subtitle">E-WARRANTY BASE</span>
+                </div>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Trang chủ</a></li>
+                <li><a href="/#about" class="nav-link">Giới thiệu</a></li>
+                <li><a href="/#features" class="nav-link">Tính năng</a></li>
+                <li><a href="/#pricing" class="nav-link">Bảng giá</a></li>
+                <li><a href="/#news" class="nav-link">Tin tức</a></li>
+                <li><a href="/#contact" class="nav-link">Liên hệ</a></li>
+            </ul>
+
+            <div class="nav-right-actions">
+                <div class="phone-contact-pill">
+                    <span>📞</span> 0339.477.939
+                </div>
+                <a th:href="@{/Warranty/Register}" class="btn-primary-teal">
+                    Đăng ký bảo hành
+                </a>
+
+                <!-- User Profile Badge with Click Popup Dropdown Window -->
+                <div class="user-profile-menu" id="userProfileMenu" onclick="toggleProfileDropdown(event)" sec:authorize="isAuthenticated()">
+                    <div class="user-avatar-circle" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
+                    <span class="user-name-text" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</span>
+                    <span style="font-size: 10px; color: #64748b;">▼</span>
+
+                    <!-- Dropdown Popup Window -->
+                    <div class="profile-dropdown-content" onclick="event.stopPropagation()">
+                        <div class="profile-dropdown-header">
+                            <div class="user-avatar-circle" style="width: 38px; height: 38px; font-size: 15px;" th:text="${userFullName != null ? #strings.substring(userFullName, 0, 1).toUpperCase() : #strings.substring(#authentication.name, 0, 1).toUpperCase()}">U</div>
+                            <div>
+                                <div class="dropdown-user-name" th:text="${userFullName != null ? userFullName : #authentication.name}">Nguyễn Văn A</div>
+                                <div class="dropdown-user-role">Khách hàng thành viên</div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="profile-dropdown-item">
+                            <span>👤</span> Thông tin cá nhân
+                        </a>
+                        <a href="#" class="profile-dropdown-item">
+                            <span>🔑</span> Đổi mật khẩu
+                        </a>
+                        
+                        <div style="height: 1px; background: #f1f5f9; margin: 6px 0;"></div>
+
+                        <form th:action="@{/Account/Logout}" method="post" style="margin: 0;">
+                            <button type="submit" class="profile-dropdown-item logout-item">
+                                <span>🚪</span> Đăng xuất
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================================
+         HERO BANNER
+         ============================================================================ -->
+    <section class="warranty-hero-banner">
+        <div class="breadcrumb-text">
+            <a href="/">Trang chủ</a> &gt; <span>Đăng ký bảo hành</span>
+        </div>
+        <h1 class="warranty-title">Đăng Ký Bảo Hành Sản Phẩm</h1>
+        <p class="warranty-subtitle">
+            Kích hoạt bảo hành điện tử nhanh chóng chỉ trong vài bước – bảo vệ quyền lợi chính hãng, không còn lo thất lạc phiếu giấy truyền thống.
+        </p>
+
+        <div class="hero-badges-row">
+            <span class="hero-badge-pill">✓ Xác thực đệm máy tốc độ 100%</span>
+            <span class="hero-badge-pill">🔒 Bảo mật chống trùng lặp mã Serial</span>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+         3 METHOD CARDS
+         ============================================================================ -->
+    <div class="method-cards-section">
+        
+        <div class="method-card active-method">
+            <div>
+                <span class="method-card-badge">⚡ Nhanh nhất</span>
+                <div class="method-icon-box">📷</div>
+                <h3 class="method-card-title">Quét Mã QR / Tem Điện Tử</h3>
+                <p class="method-card-desc">Mở camera điện thoại quét mã QR dán trên thân máy hoặc vỏ hộp sản phẩm để tự động nhận diện thông tin và kích hoạt ngay sau 1 chạm.</p>
+            </div>
+            <button type="button" class="btn-method-action primary">📷 Quét mã QR ngay</button>
+        </div>
+
+        <div class="method-card">
+            <div>
+                <div class="method-icon-box">📝</div>
+                <h3 class="method-card-title">Nhập Thông Tin Thủ Công</h3>
+                <p class="method-card-desc">Nhập số Serial/IMEI in trên tem sản phẩm cùng ngày xuất kho hoặc hóa đơn VAT để đăng ký bảo hành trực tuyến chính hãng an toàn.</p>
+            </div>
+            <button type="button" class="btn-method-action">📝 Điền form đăng ký</button>
+        </div>
+
+        <div class="method-card">
+            <div>
+                <div class="method-icon-box">📱</div>
+                <h3 class="method-card-title">Qua App LongManLoc</h3>
+                <p class="method-card-desc">Tải ứng dụng LongManLoc trên App Store / Google Play để quản lý toàn bộ thiết bị trong nhà, nhận lịch nhắc thay lõi lọc, bảo trì tự động.</p>
+            </div>
+            <button type="button" class="btn-method-action">📥 Xem hướng dẫn tải app</button>
+        </div>
+
+    </div>
+
+    <!-- ============================================================================
+         MAIN FORM & SIDEBAR SECTION
+         ============================================================================ -->
+    <main class="register-main-container">
+        
+        <!-- Left Form Card -->
+        <div class="form-card-panel">
+            
+            <div class="tab-switcher-pills">
+                <button type="button" class="tab-pill-btn active">📝 Đăng Ký Mới (Kích hoạt)</button>
+                <button type="button" class="tab-pill-btn">🔍 Tra Cứu Bảo Hành (Kiểm tra hạn)</button>
+            </div>
+
+            <!-- Success Alert -->
+            <div th:if="${successMessage}" style="background: #ecfdf5; color: #047857; padding: 12px; border-radius: 10px; font-size: 14px; margin-bottom: 20px; border: 1px solid #a7f3d0;">
+                <span th:text="${successMessage}">Đăng ký thành công!</span>
+            </div>
+
+            <!-- Step Progress -->
+            <div class="step-progress-header">
+                <div class="step-item-head active">
+                    <div class="step-circle-num">1</div>
+                    <span>BƯỚC 1: Thông tin sản phẩm</span>
+                </div>
+                <div class="step-line-divider"></div>
+                <div class="step-item-head">
+                    <div class="step-circle-num">2</div>
+                    <span>BƯỚC 2: Thông tin chủ sở hữu</span>
+                </div>
+            </div>
+
+            <!-- Form Inputs -->
+            <form th:action="@{/Warranty/Register}" method="post">
+                
+                <div class="form-row-group">
+                    <label for="serialNumber">Số Serial / IMEI / Mã tem QR *</label>
+                    <div class="input-with-button">
+                        <input type="text" id="serialNumber" name="serialNumber" placeholder="Ví dụ: LML-88939-2026VN" required />
+                        <button type="button" class="btn-inside-input">📷 Quét Mã</button>
+                    </div>
+                    <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Mã Serial gồm 10 – 16 ký tự in trên thân máy hoặc tem dán tại mặt sau phiếu xuất kho.</div>
+                </div>
+
+                <div class="two-inputs-grid form-row-group">
+                    <div>
+                        <label for="productName">Tên sản phẩm / Model *</label>
+                        <input type="text" id="productName" name="productName" class="regular-input" placeholder="Ví dụ: Máy Lọc Nước RO Thông Minh LongManLoc" required />
+                    </div>
+                    <div>
+                        <label for="purchaseDate">Ngày mua hàng *</label>
+                        <input type="date" id="purchaseDate" name="purchaseDate" class="regular-input" required />
+                    </div>
+                </div>
+
+                <div class="form-row-group">
+                    <label for="dealerName">Đại lý / Điểm bán ủy quyền</label>
+                    <input type="text" id="dealerName" name="dealerName" class="regular-input" placeholder="Ví dụ: LongManLoc Flagship Store & Website Chính Thức" />
+                </div>
+
+                <div class="form-row-group">
+                    <label>Ảnh chụp tem sản phẩm hoặc Hóa đơn mua hàng (Tùy chọn)</label>
+                    <div class="dropzone-area">
+                        <div class="dropzone-icon">☁️</div>
+                        <div style="font-size: 13px; font-weight: 700; color: #0f172a;">Kéo thả ảnh tem/hóa đơn vào đây hoặc <span style="color:#0d9488; text-decoration:underline;">chọn tệp</span></div>
+                        <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Định dạng JPG, PNG hoặc PDF (Tối đa 10MB) để xử lý nhanh hơn.</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary-teal" style="width: 100%; font-size: 15px; padding: 14px; margin-top: 10px; border-radius: 12px; background: #0b193c;">
+                    Tiếp tục: Nhập thông tin khách hàng →
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Right Sidebar Benefits -->
+        <aside class="sidebar-benefits-card">
+            <h4 class="sidebar-title">🛡️ Quyền Lợi Bảo Hành LML</h4>
+            <p style="font-size: 12px; color: #64748b; margin-bottom: 20px; line-height: 1.5;">
+                Nền tảng bảo hành điện tử tiêu chuẩn bảo mật đám mây giúp bạn quản lý bảo hành thiết bị tiện lợi nhất.
+            </p>
+
+            <div class="benefit-item-row">
+                <div class="benefit-icon-box">⏱️</div>
+                <div class="benefit-text">
+                    <h5>Kích hoạt tức thì</h5>
+                    <p>Chứng nhận số có hiệu lực ngay lập tức qua tin nhắn SMS và Zalo OA.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item-row">
+                <div class="benefit-icon-box">🛡️</div>
+                <div class="benefit-text">
+                    <h5>Xác thực chống giả mạo</h5>
+                    <p>Mỗi mã Serial và QR Code duy nhất, khóa chặt trên máy chủ đám mây Việt Nam.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item-row">
+                <div class="benefit-icon-box">📄</div>
+                <div class="benefit-text">
+                    <h5>Không lo thất lạc giấy tờ</h5>
+                    <p>Lịch sử sửa chữa, thay linh kiện được đồng bộ trực tuyến trọn đời thiết bị.</p>
+                </div>
+            </div>
+
+            <div class="support-box-white">
+                <div class="support-box-title">TỔNG ĐÀI HỖ TRỢ KÍCH HOẠT</div>
+                <div class="support-phone-num">📞 0339.477.939</div>
+                <div style="font-size: 11px; color: #64748b; margin-bottom: 12px;">Làm việc: 8:00 - 17:30 (Thứ 2 đến Thứ 7)</div>
+                <a href="#" class="btn-primary-teal" style="width: 100%; font-size: 13px; padding: 8px;">
+                    💬 Chat Zalo CSKH Ngay
+                </a>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- ============================================================================
+         QUY TRÌNH 4 BƯỚC ĐĂNG KÝ NHANH CHÓNG
+         ============================================================================ -->
+    <section class="process-steps-section" style="background:#f8fafc;">
+        <div class="section-container">
+            <div class="center-header">
+                <div style="font-size: 10px; font-weight: 800; color: #0d9488; letter-spacing: 1px; margin-bottom: 4px;">THAO TÁC ĐƠN GIẢN</div>
+                <h2 class="section-title">Quy Trình 4 Bước Đăng Ký Nhanh Chóng</h2>
+                <p class="section-subtitle" style="margin: 0 auto;">
+                    Tiết kiệm tối đa thời gian, toàn bộ quy trình hoàn tất trong vòng chưa đầy 60 giây.
+                </p>
+            </div>
+
+            <div class="steps-four-grid">
+                
+                <div class="step-process-card">
+                    <div>
+                        <div class="step-top-head">
+                            <span class="step-num-big">01</span>
+                            <div class="step-icon-bg">🔍</div>
+                        </div>
+                        <h4 class="step-card-title">Tìm Tem QR / Serial</h4>
+                        <p class="step-card-desc">Dán trên vị trí tem chống giả LongManLoc được dán trên thân máy, vỏ hộp hoặc phiếu xuất kho.</p>
+                    </div>
+                    <div class="step-time-tag">🔒 Tem hologram bảo mật</div>
+                </div>
+
+                <div class="step-process-card">
+                    <div>
+                        <div class="step-top-head">
+                            <span class="step-num-big">02</span>
+                            <div class="step-icon-bg">📷</div>
+                        </div>
+                        <h4 class="step-card-title">Quét Mã Hoặc Nhập Số</h4>
+                        <p class="step-card-desc">Mở camera quét mã QR hoặc gửi chuỗi Serial vào biểu mẫu để hệ thống nhận diện model tự động.</p>
+                    </div>
+                    <div class="step-time-tag">⚙️ Tự động tra cứu model</div>
+                </div>
+
+                <div class="step-process-card">
+                    <div>
+                        <div class="step-top-head">
+                            <span class="step-num-big">03</span>
+                            <div class="step-icon-bg">📱</div>
+                        </div>
+                        <h4 class="step-card-title">Xác Thực Số Điện Thoại</h4>
+                        <p class="step-card-desc">Dùng số điện thoại chính chủ để nhận mã OTP kích hoạt và đồng bộ thông tin bảo trì qua Zalo.</p>
+                    </div>
+                    <div class="step-time-tag">📲 Đồng bộ SMS / Zalo ZNS</div>
+                </div>
+
+                <div class="step-process-card">
+                    <div>
+                        <div class="step-top-head">
+                            <span class="step-num-big">04</span>
+                            <div class="step-icon-bg">📜</div>
+                        </div>
+                        <h4 class="step-card-title">Nhận Chứng Nhận Số</h4>
+                        <p class="step-card-desc">Giấy chứng nhận điện tử được cấp ngay tức thì lưu trữ trọn đời trên kho dữ liệu đám mây.</p>
+                    </div>
+                    <div class="step-time-tag">🏛️ Tra cứu trực tuyến 24/7</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+         FAQ ACCORDION SECTION
+         ============================================================================ -->
+    <section class="faq-accordion-section">
+        <div class="section-container">
+            <div class="center-header">
+                <div style="font-size: 10px; font-weight: 800; color: #0d9488; letter-spacing: 1px; margin-bottom: 4px;">GIẢI ĐÁP THẮC MẮC</div>
+                <h2 class="section-title">Câu Hỏi Thường Gặp Về Đăng Ký Bảo Hành</h2>
+                <p class="section-subtitle" style="margin: 0 auto;">
+                    Những thắc mắc phổ biến nhất khi khách hàng kích hoạt và quản lý tem điện tử LongManLoc.
+                </p>
+            </div>
+
+            <div class="faq-max-width">
+                
+                <div class="faq-item-card active">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        <span>Làm sao để tìm mã Serial hoặc mã QR trên sản phẩm?</span>
+                        <span class="faq-arrow">▲</span>
+                    </button>
+                    <div class="faq-answer-body">
+                        Mã Serial hoặc QR Code được in trực tiếp trên tem bạc hologram dán ở mặt đáy/mặt sau thiết bị, hoặc trên vỏ hộp đóng gói sản phẩm và phiếu xuất kho đi kèm.
+                    </div>
+                </div>
+
+                <div class="faq-item-card">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        <span>Nếu tem bị trầy xước không quét được QR code thì phải làm sao?</span>
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer-body">
+                        Bạn có thể nhập chuỗi ký tự Serial in bên dưới mã QR vào ô "Nhập Thông Tin Thủ Công" trên biểu mẫu trang này để kích hoạt bảo hành bình thường.
+                    </div>
+                </div>
+
+                <div class="faq-item-card">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        <span>Đăng ký bảo hành điện tử có mất phí không?</span>
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer-body">
+                        Hoàn toàn miễn phí 100%. Đây là quyền lợi chính hãng dành cho mọi khách hàng khi mua sản phẩm của LongManLoc.
+                    </div>
+                </div>
+
+                <div class="faq-item-card">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        <span>Thời gian tối đa để đăng ký bảo hành sau khi mua hàng là bao lâu?</span>
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer-body">
+                        Bạn nên kích hoạt bảo hành ngay sau khi mua hàng hoặc trong vòng 30 ngày kể từ ngày trên hóa đơn để đảm bảo đủ quyền lợi bảo hành 1 đổi 1.
+                    </div>
+                </div>
+
+                <div class="faq-item-card">
+                    <button class="faq-question-btn" onclick="toggleFaq(this)">
+                        <span>Khi sản phẩm gặp sự cố, tôi cần xuất trình những gì để được hỗ trợ?</span>
+                        <span class="faq-arrow">▼</span>
+                    </button>
+                    <div class="faq-answer-body">
+                        Chỉ cần đọc Số điện thoại đã đăng ký hoặc mang thiết bị có tem QR đến trạm ủy quyền. Kỹ thuật viên sẽ kiểm tra trực tuyến trên hệ thống mà không yêu cầu thêm hóa đơn giấy.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+         CTA SUPPORT BANNER
+         ============================================================================ -->
+    <section class="cta-banner-section">
+        <div class="cta-dark-card" style="background: linear-gradient(135deg, #091a3c 0%, #0d386b 100%);">
+            <div class="cta-tag-pill">🎧 Kênh Chăm Sóc Khách Hàng 24/7</div>
+            <h2 class="cta-heading">Cần Hỗ Trợ Đăng Ký Bảo Hành Điện Tử?</h2>
+            <p class="cta-subtitle">
+                Đội ngũ chuyên viên hỗ trợ và kỹ thuật của LongManLoc luôn sẵn sàng hướng dẫn trực tiếp qua tin nhắn Zalo hoặc tổng đài hotline.
+            </p>
+
+            <div class="cta-buttons-row">
+                <a href="#" class="btn-primary-teal" style="font-size: 14px; padding: 12px 24px; background: #00a870;">
+                    💬 Chat Zalo Hỗ Trợ Ngay
+                </a>
+                <a href="tel:0339477939" class="btn-secondary-glass">
+                    📞 Hotline: 0339.477.939
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================================
+         FOOTER
+         ============================================================================ -->
+    <footer class="footer-main">
+        <div class="footer-container">
+            
+            <div class="footer-brand-col">
+                <a href="/" class="nav-brand">
+                    <div class="brand-icon-box">LML</div>
+                    <div class="brand-text">
+                        <span class="brand-title" style="color:#fff;">LongManLoc</span>
+                        <span class="brand-subtitle">E-WARRANTY BASE</span>
+                    </div>
+                </a>
+                <p>Nền tảng quản lý Bảo hành điện tử thông minh, toàn diện cho người tiêu dùng và khách hàng cá nhân.</p>
+                <div class="footer-contact-info">
+                    <div>📍 140 Lê Trọng Tấn, Tây Thạnh, Hồ Chí Minh</div>
+                    <div>📞 0339.477.939</div>
+                    <div>✉️ info@gmail.com</div>
+                    <div>⏰ Thứ 2 - Thứ 6: 8:30 - 17:30 | Thứ 7: 8:30 - 12:00</div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">VỀ LONGMANLOC</h4>
+                <ul class="footer-links-ul">
+                    <li><a href="/">Giới thiệu</a></li>
+                    <li><a href="/">Tính năng</a></li>
+                    <li><a href="/">Bảng giá</a></li>
+                    <li><a href="/">Tin tức</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">DỊCH VỤ</h4>
+                <ul class="footer-links-ul">
+                    <li><a href="#">In tem bảo hành QR thông minh</a></li>
+                    <li><a href="#">Tin nhắn Zalo OA chăm sóc</a></li>
+                    <li><a href="#">Giải pháp chống giả kép</a></li>
+                    <li><a href="#">Cổng API tích hợp ERP/CRM</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">HỖ TRỢ & PHÁP LÝ</h4>
+                <ul class="footer-links-ul">
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản sử dụng</a></li>
+                    <li><a href="#">Trung tâm hỗ trợ kỹ thuật</a></li>
+                    <li><a href="#">Tài liệu API Developers</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom-strip">
+            <div>© 2026 LongManLoc Platform. All rights reserved.</div>
+            <div>Powered by LongManLoc Platform</div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS for Accordion and Profile Dropdown -->
+    <script>
+        function toggleFaq(btn) {
+            const card = btn.parentElement;
+            const arrow = btn.querySelector('.faq-arrow');
+            const isActive = card.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item-card').forEach(item => {
+                item.classList.remove('active');
+                const a = item.querySelector('.faq-arrow');
+                if (a) a.textContent = '▼';
+            });
+
+            if (!isActive) {
+                card.classList.add('active');
+                arrow.textContent = '▲';
+            }
+        }
+
+        function toggleProfileDropdown(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('userProfileMenu');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userProfileMenu');
+            if (menu && menu.classList.contains('show')) {
+                if (!menu.contains(event.target)) {
+                    menu.classList.remove('show');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
