@@ -71,6 +71,11 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- If Anonymous: Login link -->
+                <a th:href="@{/Account/Login}" class="btn-secondary-white" sec:authorize="isAnonymous()">
+                    Đăng nhập
+                </a>
             </div>
         </div>
     </header>
@@ -245,27 +250,6 @@
             </div>
         </div>
 
-        <div class="footer-bottom-strip">
-            <div>© 2026 LongManLoc E-Warranty. All rights reserved.</div>
-            <div>Bảo mật chứng nhận SSL 256-bit</div>
-        </div>
-    </footer>
-
-    <script>
-        function toggleProfileDropdown(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('userProfileMenu');
-            if (menu) {
-                menu.classList.toggle('active');
-            }
-        }
-
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('userProfileMenu');
-            if (menu && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

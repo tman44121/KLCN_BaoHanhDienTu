@@ -616,6 +616,7 @@
     </footer>
 
     <!-- Interactive JS for Accordion and Profile Dropdown -->
+    <script th:src="@{/js/main.js}"></script>
     <script>
         function toggleFaq(btn) {
             const card = btn.parentElement;
@@ -633,23 +634,6 @@
                 arrow.textContent = '▲';
             }
         }
-
-        function toggleProfileDropdown(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('userProfileMenu');
-            if (menu) {
-                menu.classList.toggle('show');
-            }
-        }
-
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userProfileMenu');
-            if (menu && menu.classList.contains('show')) {
-                if (!menu.contains(event.target)) {
-                    menu.classList.remove('show');
-                }
-            }
-        });
     </script>
 </body>
 </html>

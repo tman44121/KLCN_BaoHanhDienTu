@@ -201,20 +201,6 @@
         </div>
     </footer>
 
-    <script>
-        function toggleProfileDropdown(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('userProfileMenu');
-            if (menu) {
-                menu.classList.toggle('active');
-            }
-        }
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('userProfileMenu');
-            if (menu && menu.classList.contains('active')) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
