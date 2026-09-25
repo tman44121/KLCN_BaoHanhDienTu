@@ -198,4 +198,29 @@ public class DashboardService {
                 return "badge-processing";
         }
     }
+
+    // ─── Lấy thông tin profile khách hàng dạng Map (dùng để điền trước form) ──
+    @Transactional(readOnly = true)
+    public Map<String, String> getCustomerProfile(String username) {
+        Map<String, String> map = new HashMap<>();
+        if (username == null || username.trim().isEmpty()) return map;
+        try {
+            String sql = "SELECT k.HoTen, k.SDT, COALESCE(k.Email,''), COALESCE(k.DiaChi,'') " +
+                         "FROM KhachHang k " +
+                         "LEFT JOIN TaiKhoan t ON k.MaTaiKhoan = t.MaTaiKhoan " +
+                         "WHERE LOWER(t.TenDangNhap) = LOWER(:user) OR k.SDT = :user " +
+                         "   OR LOWER(k.Email) = LOWER(:user) LIMIT 1";
+            List<Object[]> rows = entityManager.createNativeQuery(sql)
+                                               .setParameter("user", username.trim())
+                                               .getResultList();
+            if (!rows.isEmpty()) {
+                Object[] r = rows.get(0);
+                map.put("hoTen", r[0] != null ? r[0].toString() : "");
+                map.put("sdt",   r[1] != null ? r[1].toString() : "");
+                map.put("email", r[2] != null ? r[2].toString() : "");
+                map.put("diaChi",r[3] != null ? r[3].toString() : "");
+            }
+        } catch (Exception ignored) {}
+        return map;
+    }
 }
